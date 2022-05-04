@@ -12,3 +12,8 @@ class ToSplashPage extends PageEvent {
   @override
   List<Object> get props => [];
 }
+
+class ToMenuPage extends PageEvent {
+  @override
+  List<Object> get props => [];
+}

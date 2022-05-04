@@ -25,9 +25,11 @@ class _AppNavigatorState extends State<AppNavigator> {
   Widget build(BuildContext context) {
     return BlocBuilder<PageBloc, PageState>(builder: (_, state) {
       if (state is OnSplashPage) {
-        return SplashPage();
+        return const SplashPage();
+      } else if (state is OnMenuPage) {
+        return const MenuPage();
       } else {
-        return SplashPage();
+        return Container();
       }
     });
   }

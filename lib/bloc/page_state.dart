@@ -17,3 +17,8 @@ class OnSplashPage extends PageState {
   @override
   List<Object> get props => [];
 }
+
+class OnMenuPage extends PageState {
+  @override
+  List<Object> get props => [];
+}
