@@ -35,10 +35,10 @@ class _AppNavigatorState extends State<AppNavigator> {
           level: state.level,
         );
       } else if (state is OnContentPage) {
-        return ContentsPage(
-            title: state.title,
-            chapterId: state.chapterId,
-            levelId: state.levelId);
+        return ContentsPage(contentParam: state.contentParam);
+      } else if (state is OnPlayerPage) {
+        return PlayerPage(
+            contentParam: state.contentParam, content: state.content);
       } else {
         return Container();
       }
