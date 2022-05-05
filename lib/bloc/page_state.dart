@@ -36,11 +36,18 @@ class OnChapterPage extends PageState {
 }
 
 class OnContentPage extends PageState {
-  final String title;
-  final int chapterId;
-  final int levelId;
-  const OnContentPage(this.title, this.chapterId, this.levelId);
+  final ContentParam contentParam;
+  const OnContentPage(this.contentParam);
 
   @override
-  List<Object> get props => [title, chapterId, levelId];
+  List<Object> get props => [contentParam];
+}
+
+class OnPlayerPage extends PageState {
+  final ContentParam contentParam;
+  final Content content;
+  const OnPlayerPage(this.contentParam, this.content);
+
+  @override
+  List<Object> get props => [contentParam, content];
 }

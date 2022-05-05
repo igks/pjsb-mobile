@@ -31,11 +31,18 @@ class ToChapterPage extends PageEvent {
 }
 
 class ToContentPage extends PageEvent {
-  final String title;
-  final int chapterId;
-  final int levelId;
-  const ToContentPage(this.title, this.chapterId, this.levelId);
+  final ContentParam contentParam;
+  const ToContentPage(this.contentParam);
 
   @override
-  List<Object> get props => [title, chapterId, levelId];
+  List<Object> get props => [contentParam];
+}
+
+class ToPlayerPage extends PageEvent {
+  final ContentParam contentParam;
+  final Content content;
+  const ToPlayerPage(this.contentParam, this.content);
+
+  @override
+  List<Object> get props => [contentParam, content];
 }
