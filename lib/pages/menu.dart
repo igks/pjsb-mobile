@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 part of 'pages.dart';
 
 class MenuPage extends StatelessWidget {
@@ -7,32 +5,46 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var classes = List<int>.generate(13, (i) => i);
-
     return Scaffold(
-      appBar: CustomAppBar(
-          title: Text(
-        "Pilih Kelas",
-        style: fontSecondary.copyWith(
-            color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24),
-      )),
-      body: GridView.count(
-        crossAxisCount: 3,
-        children: classes
-            .map((value) => GestureDetector(
-                  onTap: () {
-                    print(value);
-                  },
+        appBar: const CustomAppBar(title: "Menu"),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  context.read<PageBloc>().add(ToLevelPage());
+                },
+                child: SizedBox(
+                  height: 150,
                   child: Card(
-                    child: Center(
-                      child: Text(value == 0 ? "PAUD" : value.toString(),
+                    shadowColor: mainColor,
+                    elevation: 5,
+                    child: const Center(
+                      child: Text("Belajar",
                           style: TextStyle(
-                              fontSize: 30, fontWeight: FontWeight.bold)),
+                              fontSize: 25, fontWeight: FontWeight.bold)),
                     ),
                   ),
-                ))
-            .toList(),
-      ),
-    );
+                ),
+              ),
+              GestureDetector(
+                onTap: () {},
+                child: SizedBox(
+                  height: 150,
+                  child: Card(
+                    shadowColor: mainColor,
+                    elevation: 5,
+                    child: const Center(
+                      child: Text("Latihan",
+                          style: TextStyle(
+                              fontSize: 25, fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 }
