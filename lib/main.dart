@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(PasDig());
+  runApp(const PasDig());
 }
 
 class PasDig extends StatelessWidget {
@@ -19,7 +19,7 @@ class PasDig extends StatelessWidget {
       create: (_) => PageBloc(),
       child: MaterialApp(
           theme: ThemeData(fontFamily: GoogleFonts.poppins().fontFamily),
-          home: AppNavigator()),
+          home: const AppNavigator()),
     );
   }
 }

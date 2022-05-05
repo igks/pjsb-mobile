@@ -10,5 +10,21 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     on<ToSplashPage>((event, emit) {
       emit(OnSplashPage());
     });
+
+    on<ToMenuPage>((event, emit) {
+      emit(OnMenuPage());
+    });
+
+    on<ToLevelPage>((event, emit) {
+      emit(OnLevelPage());
+    });
+
+    on<ToChapterPage>((event, emit) {
+      emit(OnChapterPage(event.level));
+    });
+
+    on<ToContentPage>((event, emit) {
+      emit(OnContentPage(event.title, event.chapterId, event.levelId));
+    });
   }
 }
