@@ -1,3 +1,5 @@
+import 'package:PJSBDigital/models/models.dart';
+import 'package:PJSBDigital/params/params.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
@@ -24,7 +26,11 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     });
 
     on<ToContentPage>((event, emit) {
-      emit(OnContentPage(event.title, event.chapterId, event.levelId));
+      emit(OnContentPage(event.contentParam));
+    });
+
+    on<ToPlayerPage>((event, emit) {
+      emit(OnPlayerPage(event.contentParam, event.content));
     });
   }
 }
