@@ -1,7 +1,7 @@
 part of 'widgets.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
-  final Widget title;
+  final String title;
   final List<Widget>? actions;
   final Widget? leading;
 
@@ -21,7 +21,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: widget.title,
+      title: Text(
+        widget.title,
+        style: fontSecondary.copyWith(
+            color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24),
+      ),
       leading: widget.leading,
       actions: widget.actions ?? [],
       centerTitle: true,
