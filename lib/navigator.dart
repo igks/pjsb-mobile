@@ -28,6 +28,17 @@ class _AppNavigatorState extends State<AppNavigator> {
         return const SplashPage();
       } else if (state is OnMenuPage) {
         return const MenuPage();
+      } else if (state is OnLevelPage) {
+        return const LevelPage();
+      } else if (state is OnChapterPage) {
+        return ChapterPage(
+          level: state.level,
+        );
+      } else if (state is OnContentPage) {
+        return ContentsPage(
+            title: state.title,
+            chapterId: state.chapterId,
+            levelId: state.levelId);
       } else {
         return Container();
       }
