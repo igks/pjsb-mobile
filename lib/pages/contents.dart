@@ -1,15 +1,8 @@
 part of 'pages.dart';
 
 class ContentsPage extends StatefulWidget {
-  final String title;
-  final int chapterId;
-  final int levelId;
-  const ContentsPage(
-      {Key? key,
-      required this.title,
-      required this.chapterId,
-      required this.levelId})
-      : super(key: key);
+  final ContentParam contentParam;
+  const ContentsPage({Key? key, required this.contentParam}) : super(key: key);
 
   @override
   State<ContentsPage> createState() => _ContentsPageState();
@@ -21,8 +14,8 @@ class _ContentsPageState extends State<ContentsPage> {
 
   void getContents() async {
     try {
-      var res =
-          await API.get("${svApiDomain}content/details/${widget.chapterId}");
+      var res = await API.get(
+          "${svApiDomain}content/details/${widget.contentParam.chapterId}");
       List<Content> resContent = [];
       res.data["data"]["data"].forEach((content) {
         resContent.add(Content.fromJson(content));
@@ -44,11 +37,13 @@ class _ContentsPageState extends State<ContentsPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        context.read<PageBloc>().add(ToChapterPage(widget.levelId));
+        context
+            .read<PageBloc>()
+            .add(ToChapterPage(widget.contentParam.levelId));
         return Future.value(false);
       },
       child: Scaffold(
-          appBar: CustomAppBar(title: "Materi ${widget.title}"),
+          appBar: CustomAppBar(title: "Materi ${widget.contentParam.title}"),
           body: isLoading
               ? const Center(child: Spinner())
               : contents.isNotEmpty
@@ -56,7 +51,10 @@ class _ContentsPageState extends State<ContentsPage> {
                       crossAxisCount: 2,
                       children: contents
                           .map((content) => GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  context.read<PageBloc>().add(ToPlayerPage(
+                                      widget.contentParam, content));
+                                },
                                 child: Card(
                                   shadowColor: mainColor,
                                   elevation: 5,

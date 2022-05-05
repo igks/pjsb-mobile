@@ -54,8 +54,10 @@ class _ChapterPageState extends State<ChapterPage> {
                               .map((chapter) => GestureDetector(
                                     onTap: () {
                                       context.read<PageBloc>().add(
-                                          ToContentPage(chapter.title,
-                                              chapter.id, widget.level));
+                                          ToContentPage(ContentParam(
+                                              title: chapter.title,
+                                              chapterId: chapter.id,
+                                              levelId: widget.level)));
                                     },
                                     child: SizedBox(
                                       width: MediaQuery.of(context).size.width,
