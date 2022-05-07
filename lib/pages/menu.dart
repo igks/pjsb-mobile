@@ -1,51 +1,48 @@
 part of 'pages.dart';
 
-class MenuPage extends StatelessWidget {
+class MenuPage extends StatefulWidget {
   const MenuPage({Key? key}) : super(key: key);
+
+  @override
+  State<MenuPage> createState() => _MenuPageState();
+}
+
+class _MenuPageState extends State<MenuPage> {
+  int currentIndex = 0;
+
+  void onItemTap(int index) {
+    print(index);
+    setState(() {
+      currentIndex = index;
+    });
+  }
+
+  List<Widget> items = [
+    const LevelPage(),
+    Center(
+      child: Text("Halaman masih dalam pengembangan"),
+    )
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const CustomAppBar(title: "Menu"),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  context.read<PageBloc>().add(ToLevelPage());
-                },
-                child: SizedBox(
-                  height: 150,
-                  child: Card(
-                    shadowColor: mainColor,
-                    elevation: 5,
-                    child: const Center(
-                      child: Text("Belajar",
-                          style: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold)),
-                    ),
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: () {},
-                child: SizedBox(
-                  height: 150,
-                  child: Card(
-                    shadowColor: mainColor,
-                    elevation: 5,
-                    child: const Center(
-                      child: Text("Latihan",
-                          style: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold)),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+      appBar: CustomAppBar(
+          title: currentIndex == 0 ? "Mulai Belajar" : "Mulai Latihan"),
+      body: items[currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: mainColor,
+        currentIndex: currentIndex,
+        onTap: onItemTap,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.book_rounded),
+            label: "Belajar",
           ),
-        ));
+          BottomNavigationBarItem(
+              icon: Icon(Icons.model_training), label: "Latihan")
+        ],
+      ),
+    );
   }
 }
