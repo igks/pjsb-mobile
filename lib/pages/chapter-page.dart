@@ -36,7 +36,7 @@ class _ChapterPageState extends State<ChapterPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () {
-          context.read<PageBloc>().add(ToLevelPage());
+          context.read<PageBloc>().add(ToMenuPage());
           return Future.value(false);
         },
         child: Scaffold(
